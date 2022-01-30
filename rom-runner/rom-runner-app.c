@@ -1,9 +1,9 @@
 ///////////////////////////////////////////////////////////////////////////////
-// NAME:            main.c
+// NAME:            rom-runner-app.c
 //
 // AUTHOR:          Ethan D. Twardy <ethan.twardy@gmail.com>
 //
-// DESCRIPTION:     Top level script.
+// DESCRIPTION:     Implementation of the RomRunnerApp subclass.
 //
 // CREATED:         01/30/2022
 //
@@ -25,13 +25,34 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ////
 
-#include <assert.h>
 #include <gtk/gtk.h>
-#include <glib/gstdio.h>
 
 #include <rom-runner/rom-runner-app.h>
+#include <rom-runner/rom-runner-app-window.h>
 
-int main(int argc, char** argv)
-{ return g_application_run(G_APPLICATION(rom_runner_app_new()), argc, argv); }
+struct _RomRunnerApp {
+    GtkApplication parent;
+};
+
+G_DEFINE_TYPE(RomRunnerApp, rom_runner_app, GTK_TYPE_APPLICATION);
+
+static void rom_runner_app_init(RomRunnerApp* app)
+{}
+
+static void rom_runner_app_activate(GApplication* app) {
+    RomRunnerAppWindow* win = rom_runner_app_window_new(ROM_RUNNER_APP(app));
+    gtk_window_present(GTK_WINDOW(win));
+}
+
+static void rom_runner_app_class_init(RomRunnerAppClass* class) {
+    G_APPLICATION_CLASS(class)->activate = rom_runner_app_activate;
+}
+
+RomRunnerApp* rom_runner_app_new() {
+    return g_object_new(ROM_RUNNER_APP_TYPE,
+        "application-id", "org.edtwardy.rom-runner",
+        "flags", G_APPLICATION_FLAGS_NONE,
+        NULL);
+}
 
 ///////////////////////////////////////////////////////////////////////////////

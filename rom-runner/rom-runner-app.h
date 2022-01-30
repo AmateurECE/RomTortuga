@@ -1,9 +1,9 @@
 ///////////////////////////////////////////////////////////////////////////////
-// NAME:            main.c
+// NAME:            rom-runner-app.h
 //
 // AUTHOR:          Ethan D. Twardy <ethan.twardy@gmail.com>
 //
-// DESCRIPTION:     Top level script.
+// DESCRIPTION:     GtkApplication subclass for RomRunner.
 //
 // CREATED:         01/30/2022
 //
@@ -25,13 +25,17 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ////
 
-#include <assert.h>
+#ifndef ROM_RUNNER_APP_H
+#define ROM_RUNNER_APP_H
+
 #include <gtk/gtk.h>
-#include <glib/gstdio.h>
 
-#include <rom-runner/rom-runner-app.h>
+#define ROM_RUNNER_APP_TYPE (rom_runner_app_get_type())
+G_DECLARE_FINAL_TYPE(RomRunnerApp, rom_runner_app, ROM_RUNNER, APP,
+    GtkApplication);
 
-int main(int argc, char** argv)
-{ return g_application_run(G_APPLICATION(rom_runner_app_new()), argc, argv); }
+RomRunnerApp* rom_runner_app_new();
+
+#endif // ROM_RUNNER_APP_H
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object id="window" class="GtkWindow">
+  <template class="RomRunnerAppWindow" parent="GtkApplicationWindow">
     <property name="title">Rom Tortuga</property>
     <property name="default-width">1040</property>
     <property name="default-height">780</property>
+
     <child>
       <object id="flowbox" class="GtkFlowBox">
-
-        <child>
-          <object id="sidebar" class="GtkStackSidebar">
-          </object>
-        </child>
-
+	<child>
+	  <object id="sidebar" class="GtkStackSidebar" />
+	</child>
       </object>
     </child>
-  </object>
+
+  </template>
 </interface>

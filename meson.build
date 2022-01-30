@@ -27,6 +27,12 @@
 
 project('rom-tortuga', 'c', version: '0.1.0')
 
+gnome = import('gnome')
+resources = gnome.compile_resources(
+  'resources', 'rom-runner/rom-runner.gresource.xml',
+  source_dir: 'rom-runner'
+)
+
 libgtk = dependency('gtk4')
 
 executable(
@@ -34,6 +40,9 @@ executable(
   sources: [
     'rom-runner/main.c',
     'rom-runner/game-list.c',
+    'rom-runner/rom-runner-app.c',
+    'rom-runner/rom-runner-app-window.c',
+    resources,
   ],
   c_args: ['-frecord-gcc-switches'],
   install: true,
