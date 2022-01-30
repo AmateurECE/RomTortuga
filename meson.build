@@ -34,6 +34,7 @@ executable(
   sources: [
     'rom-tortuga/main.c',
   ],
+  c_args: ['-frecord-gcc-switches'],
   install: true,
   dependencies: [libgtk],
 )

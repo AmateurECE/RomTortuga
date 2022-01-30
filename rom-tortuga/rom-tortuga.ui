@@ -5,6 +5,11 @@
     <child>
       <object id="grid" class="GtkGrid">
 
+        <child>
+          <object id="sidebar" class="GtkStackSidebar">
+          </object>
+        </child>
+
       </object>
     </child>
   </object>

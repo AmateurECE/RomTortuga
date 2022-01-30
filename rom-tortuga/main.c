@@ -34,6 +34,18 @@ static void activate(GtkApplication* app, gpointer user_data) {
 
     GObject* window = gtk_builder_get_object(builder, "window");
     gtk_window_set_application(GTK_WINDOW(window), app);
+
+    GtkWidget* stack = gtk_stack_new();
+    GtkWidget* box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_stack_add_titled(GTK_STACK(stack), box, "Box 1", "Box One");
+
+    box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+    gtk_stack_add_titled(GTK_STACK(stack), box, "Box 2", "Box Two");
+
+    GObject* stack_sidebar = gtk_builder_get_object(builder, "sidebar");
+    gtk_stack_sidebar_set_stack(GTK_STACK_SIDEBAR(stack_sidebar),
+        GTK_STACK(stack));
+
     gtk_widget_show(GTK_WIDGET(window));
     g_object_unref(builder);
 }
