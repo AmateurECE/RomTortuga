@@ -2,8 +2,10 @@
 <interface>
   <object id="window" class="GtkWindow">
     <property name="title">Rom Tortuga</property>
+    <property name="default-width">1040</property>
+    <property name="default-height">780</property>
     <child>
-      <object id="grid" class="GtkGrid">
+      <object id="flowbox" class="GtkFlowBox">
 
         <child>
           <object id="sidebar" class="GtkStackSidebar">

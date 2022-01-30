@@ -33,6 +33,7 @@ executable(
   'rom-tortuga',
   sources: [
     'rom-tortuga/main.c',
+    'rom-tortuga/game-list.c',
   ],
   c_args: ['-frecord-gcc-switches'],
   install: true,

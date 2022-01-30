@@ -25,22 +25,33 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ////
 
+#include <assert.h>
 #include <gtk/gtk.h>
 #include <glib/gstdio.h>
 
+#include <rom-tortuga/game-list.h>
+
+static void populate_sidebar(GtkStack* stack) {
+    GameList* iter = game_list_iter_new();
+    GameListEntry* entry = NULL;
+    while (NULL != (entry = game_list_iter_next(iter))) {
+        GtkWidget* box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
+        gtk_stack_add_titled(GTK_STACK(stack), box, entry->name, entry->name);
+    }
+    game_list_iter_free(iter);
+}
+
 static void activate(GtkApplication* app, gpointer user_data) {
     GtkBuilder* builder = gtk_builder_new();
-    gtk_builder_add_from_file(builder, "rom-tortuga.ui", NULL);
+    const char* builder_path = getenv("GTK_BUILDER_PATH");
+    assert(NULL != builder_path);
+    gtk_builder_add_from_file(builder, builder_path, NULL);
 
     GObject* window = gtk_builder_get_object(builder, "window");
     gtk_window_set_application(GTK_WINDOW(window), app);
 
     GtkWidget* stack = gtk_stack_new();
-    GtkWidget* box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_stack_add_titled(GTK_STACK(stack), box, "Box 1", "Box One");
-
-    box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    gtk_stack_add_titled(GTK_STACK(stack), box, "Box 2", "Box Two");
+    populate_sidebar(GTK_STACK(stack));
 
     GObject* stack_sidebar = gtk_builder_get_object(builder, "sidebar");
     gtk_stack_sidebar_set_stack(GTK_STACK_SIDEBAR(stack_sidebar),
