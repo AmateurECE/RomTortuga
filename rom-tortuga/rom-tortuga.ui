@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object id="window" class="GtkWindow">
+    <property name="title">Rom Tortuga</property>
+    <child>
+      <object id="grid" class="GtkGrid">
+
+      </object>
+    </child>
+  </object>
+</interface>
