@@ -30,10 +30,10 @@ project('rom-tortuga', 'c', version: '0.1.0')
 libgtk = dependency('gtk4')
 
 executable(
-  'rom-tortuga',
+  'rom-runner',
   sources: [
-    'rom-tortuga/main.c',
-    'rom-tortuga/game-list.c',
+    'rom-runner/main.c',
+    'rom-runner/game-list.c',
   ],
   c_args: ['-frecord-gcc-switches'],
   install: true,

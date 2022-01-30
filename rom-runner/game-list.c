@@ -28,13 +28,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <rom-tortuga/game-list.h>
+#include <rom-runner/game-list.h>
 
 typedef struct GameList {
     size_t index;
 } GameList;
 
-static const struct GameListEntry GAME_LIST[] = {
+static struct GameListEntry GAME_LIST[] = {
     { .name="Game One" },
     { .name="Game Two" },
     { 0 },

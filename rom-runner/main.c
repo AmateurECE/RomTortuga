@@ -29,7 +29,7 @@
 #include <gtk/gtk.h>
 #include <glib/gstdio.h>
 
-#include <rom-tortuga/game-list.h>
+#include <rom-runner/game-list.h>
 
 static void populate_sidebar(GtkStack* stack) {
     GameList* iter = game_list_iter_new();
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
     g_chdir(GTK_SRCDIR);
 #endif
 
-    GtkApplication* app = gtk_application_new("org.edtwardy.rom-tortuga",
+    GtkApplication* app = gtk_application_new("org.edtwardy.rom-runner",
         G_APPLICATION_FLAGS_NONE);
     g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
     int status = g_application_run(G_APPLICATION(app), argc, argv);
